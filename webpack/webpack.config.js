@@ -39,7 +39,8 @@ const babelConfig = {
                 "corejs": "3.0.0",
                 "modules": "commonjs"
             }
-        ]
+        ],
+        "@babel/preset-typescript"
     ],
     "overrides": [
         {
@@ -133,7 +134,7 @@ const loaders = [
     },
 
     ...((isProduction || isDevelopment) ? [{
-        test: /\.js$/,
+        test: /\.(js|ts)$/,
         include: paths.appSrc,
         enforce: 'pre',
         loader: 'eslint-loader',
@@ -143,7 +144,7 @@ const loaders = [
     }] : []),
 
     {
-        test: /\.js$/,
+        test: /\.(js|ts)$/,
         exclude: isProduction ? [
             /node_modules\/core-js/,
             /node_modules\/webpack/,
@@ -190,7 +191,8 @@ module.exports = {
     resolve: {
         alias: {
             '~': paths.appSrc
-        }
+        },
+        extensions: ['.js', '.ts']
     },
 
     output: isProduction ? productionOutput : {},
