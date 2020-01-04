@@ -39,6 +39,18 @@
       }
     },
     {
+      "files": "src/**/*.ts",
+      "env": {
+        "browser": true,
+        "es2020": true
+      },
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ]
+    },
+    {
       "files": "test/**/*.js",
       "excludedFiles": "test/karma.conf.js",
       "parser": "babel-eslint",
