@@ -1,16 +1,15 @@
-function arrayBufferToString(arBuf) {
+function arrayBufferToString(arBuf: ArrayBuffer): string {
     const
         arr = new Uint8Array(arBuf),
         s = [];
     for (let i = 0; i < arr.length; i += 4096) {
         let chunk = arr.subarray(i, i + 4096);
-        chunk = String.fromCharCode.apply(null, chunk);
-        s.push(chunk);
+        s.push(String.fromCharCode.apply(null, <number[]><unknown>chunk));
     }
     return s.join('');
 }
 
-function stringToArrayBuffer(s) {
+function stringToArrayBuffer(s: string): ArrayBuffer {
     const
         length = s.length,
         buf = new ArrayBuffer(length),
@@ -21,7 +20,7 @@ function stringToArrayBuffer(s) {
     return buf;
 }
 
-function blobFromString(s) {
+function blobFromString(s: string): Blob {
     const arr = stringToArrayBuffer(s);
     return new Blob([arr]);
 }
