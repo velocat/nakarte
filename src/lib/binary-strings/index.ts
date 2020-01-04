@@ -3,8 +3,8 @@ function arrayBufferToString(arBuf: ArrayBuffer): string {
         arr = new Uint8Array(arBuf),
         s = [];
     for (let i = 0; i < arr.length; i += 4096) {
-        let chunk = arr.subarray(i, i + 4096);
-        s.push(String.fromCharCode.apply(null, <number[]><unknown>chunk));
+        const chunk = arr.subarray(i, i + 4096);
+        s.push(String.fromCharCode.apply(null, chunk as unknown as number[]));
     }
     return s.join('');
 }
